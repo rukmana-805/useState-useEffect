@@ -19,7 +19,7 @@ let Form = () => {
     if(gender !== "Male" || gender !== "Female"){
       setCheckgender(false);
     }
-    if(password === re_password && checkgender === true && checkgender === true && checkpassword === true && username !== "" && password !== ""){
+    if(password === re_password && checkgender === true && checkpassword === true && username !== "" && password !== ""){
         alert("Register Successfully");
     }
   }
