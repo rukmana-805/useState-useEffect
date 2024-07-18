@@ -1,5 +1,5 @@
 import "../StyleComponents/Form.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 let Form = () => {
   const [username, setUsername] = useState("");
@@ -16,10 +16,10 @@ let Form = () => {
     if(password !== re_password){
         alert("Re-enytered Password doesn't match with original password.")
     }
-    if(checkgender === false){
-      setCheckgender(true);
+    if(gender !== "Male" || gender !== "Female"){
+      setCheckgender(false);
     }
-    if(checkgender === true && checkpassword === true && username !== "" && password !== ""){
+    if(password === re_password && checkgender === true && checkgender === true && checkpassword === true && username !== "" && password !== ""){
         alert("Register Successfully");
     }
   }
@@ -38,7 +38,7 @@ let Form = () => {
   function passwordRe_Check(e){
     let item = e.target.value;
     setRe_Password(item)
-    if(re_password.length < 5 && re_password !== ""){
+    if(re_password.length < 4 && re_password !== ""){
         setCheckpassword(false);
     }
     else{
@@ -46,12 +46,7 @@ let Form = () => {
     }
   }
 
-  function genderCheck(e){
-    let item = e.target.value;
-    setGender(item);
-    setCheckgender(false);
-  }
-
+  
   return (
     <div>
       <h2 style={{ margin: "20px" }}>New Candidate Register Here</h2>
@@ -66,11 +61,12 @@ let Form = () => {
         <br />
         <span className="gender">Gender</span>
         <span>Male</span>
-        <input onChange={genderCheck} type="radio" name="gender" value="Male" />
+        <input onChange={(e)=>{setGender(e.target.value)}} type="radio" name="gender" value="Male" />
         <span>Female</span>
-        <input onChange={genderCheck} type="radio" name="gender" value="Female" />
+        <input onChange={(e)=>{setGender(e.target.value)}} type="radio" name="gender" value="Female" />
         <br />
         {checkgender ? "" : <span style={{color:"red",margin:"10px"}}>Please select gender</span>}<br/>
+
         <select onChange={(e)=>{setIntrest(e.target.value)}}>
           <option>Select Intrest</option>
           <option>Marvel Movies</option>
